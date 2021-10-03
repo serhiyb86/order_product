@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+
+Hello world!
+<br>
+<br>
+<br>
+Our application provides such operations:
+<br>
+<a href="newProduct">1. Create Product</a>
+
+<br>
+<a href="newOrder">2. Create Order with a list of the products specified by id. User Id should be
+    auto generated</a>
+
+<br>
+3. Update Order Entries quantities. During order creation Order Entries should
+be created
+in background
+<br>
+4. Show following views:
+<br>
+<a href="listProducts">a. | Product Name | Product Price | Product Status | for all products</a>
+<br>
+<a href="listOderedProducts">b. List all products, which have been ordered at least once, with total ordered
+    quantity sorted descending by the quantity. Please implement it using SQL
+    query instead of doing calculation in Java</a>
+<br>
+c. | Order ID | Products total Price | Product Name | Products Quantity in orderEntry
+| Order Created Date [YYYY-MM-DD HH:MM ] | by order Id
+<br>
+<a href="listProductsByOrder">d. List all orders using previous view</a>
+<br>
+5. Remove product by ID / Remove all products only if you enter a password
+
+</body>
+</html>

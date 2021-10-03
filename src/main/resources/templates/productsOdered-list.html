@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Odered Products list</title>
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+<h2>Odered Products list</h2>
+<br>
+<br>
+
+<table class="table">
+    <tr>
+        <th>ID:</th>
+        <th>Product Name:</th>
+        <th>Product Price:</th>
+        <th>Product Status:</th>
+        <th>Ordered:</th>
+    </tr>
+    <tr th:each="prod: ${list}">
+        <td th:text="${prod.id}"/>
+        <td th:text="${prod.name}"/>
+        <td th:text="${prod.price}"/>
+        <td th:text="${prod.status}"/>
+        <td th:text="${prod.ordered}"/>
+    </tr>
+
+</table>
+
+
+</body>
+</html>

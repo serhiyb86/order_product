@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Product</title>
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+<h2>Create Product</h2>
+<form th:action="@{saveProduct}" th:object="${product}" method="post">
+    <table class="table">
+        <tr>
+            <td>
+                <label for="name">Name:</label>
+            </td>
+            <td>
+                <input type="text" name="name" id="name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="price">Price:</label>
+            </td>
+            <td>
+                <input type="text" name="price" id="price"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="status">Status:</label>
+            </td>
+            <td>
+                <select name="status" id="status">
+                    <option th:each="status : ${statuses}" th:value="${status}" th:text="${status.name()}"/>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="reset" value="Clear"/>
+            </td>
+            <td>
+                <input type="submit" value="Save"/>
+            </td>
+
+        </tr>
+
+    </table>
+
+
+</form>
+
+
+</body>
+</html>

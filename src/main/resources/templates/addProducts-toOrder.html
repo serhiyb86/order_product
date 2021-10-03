@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Order</title>
+</head>
+<body>
+
+<div th:insert="fragments/header.html"></div>
+
+
+<h1 style="color: darkred" th:text="${created}"></h1>
+<h2>Order</h2>
+<table class="table">
+    <tr>
+        <td>Order ID:</td>
+        <td th:text="${order.id}"/>
+    </tr>
+    <tr>
+        <td>Created date:</td>
+        <td th:text="${#temporals.format(order.created_at, 'dd.MM.yyyy hh:mm')}"/>
+    </tr>
+    <tr>
+        <td>Status:</td>
+        <td th:text="${order.status}"/>
+    </tr>
+</table>
+<br>
+<br>
+<h2>Products in order # <span th:text="${order.id}"/></h2>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Product Price</th>
+        <th>Product Status</th>
+        <th>Product Quantity</th>
+        <th colspan="2">Operations</th>
+    </tr>
+    <tr th:each="prod: ${order.orderProducts}">
+        <td th:text="${prod.products.id}"/>
+        <td th:text="${prod.products.name}"/>
+        <td th:text="${prod.products.price}"/>
+        <td th:text="${prod.products.status}"/>
+        <td th:text="${prod.quantity}"/>
+        <td>
+
+        </td>
+        <td>
+
+            <a th:href="@{|/${prod.products.id}/removeProductOrder/${order.id}|}">Remove (Not done)</a>
+        </td>
+    </tr>
+
+</table>
+<br>
+<br>
+<br>
+<br>
+
+<h2>Add products</h2>
+<br>
+<br>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Product Price</th>
+        <th>Product Status</th>
+        <th>Add to order</th>
+    </tr>
+    <tr th:each="prod: ${products}">
+        <td th:text="${prod.id}"/>
+        <td th:text="${prod.name}"/>
+        <td th:text="${prod.price}"/>
+        <td th:text="${prod.status}"/>
+
+        <td>
+            <span th:text="quantity "/>
+            <form th:action="@{|/${prod.id}/addProductOrder/${order.id}|}"  method="get">
+                <input type="text" name="quantity" id="quantity" value="1"/>
+                <input type="submit" value="Add">
+            </form>
+        </td>
+
+    </tr>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

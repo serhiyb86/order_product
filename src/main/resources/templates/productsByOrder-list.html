@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List products ordered by order</title>
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+<h2>List products ordered by order</h2>
+<br>
+<br>
+<table class="table">
+    <tr>
+        <th>Order ID:</th>
+        <th>Total products cost:</th>
+        <th>Product name:</th>
+        <th>Products quantity:</th>
+        <th>Order created date:</th>
+        <th>Operations:</th>
+    </tr>
+    <tr th:each="prod: ${list}">
+        <td th:text="${prod.orders_id}"/>
+        <td th:text="${prod.total}"/>
+        <td th:text="${prod.name}"/>
+        <td th:text="${prod.quantity}"/>
+        <td th:text="${#temporals.format(prod.created_at, 'dd.MM.yyyy hh:mm')}"/>
+        <td><a th:href="@{|/updateOrder/${prod.orders_id}|}">Edit</a> </td>
+    </tr>
+
+</table>
+</body>
+</html>

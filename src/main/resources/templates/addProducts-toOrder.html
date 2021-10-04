@@ -44,17 +44,18 @@
         <td th:text="${prod.products.status}"/>
         <td th:text="${prod.quantity}"/>
         <td>
-
+            <form method="get" th:action="@{|/${prod.products.id}/quantityProductOrder/${order.id}|}">
+                <input type="text" name="quantity" >
+                <input type="submit" value="Change quantity">
+            </form>
         </td>
         <td>
 
-            <a th:href="@{|/${prod.products.id}/removeProductOrder/${order.id}|}">Remove (Not done)</a>
+            <a th:href="@{|/${prod.products.id}/removeProductOrder/${order.id}|}">Remove</a>
         </td>
     </tr>
 
 </table>
-<br>
-<br>
 <br>
 <br>
 

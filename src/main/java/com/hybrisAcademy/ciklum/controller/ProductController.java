@@ -65,19 +65,34 @@ public class ProductController {
         return "redirect:listProducts";
     }
 
+    @GetMapping("removeProduct/{product_id}")
+    public String removeProduct(@PathVariable int product_id) {
+        logger.info("Product delete was called! " + product_id);
+        productsService.removeById(product_id);
+        return "redirect:listProducts";
+    }
+
     @GetMapping("{prod_id}/addProductOrder/{order_id}")
     public String addProductOrder(@PathVariable int order_id,
-                                  @PathVariable int prod_id, Model model, @RequestParam(value = "quantity") int quantity) {
+                                  @PathVariable int prod_id, @RequestParam(value = "quantity") int quantity) {
         logger.info("Add product for order was called!");
         logger.info("prod_id " + prod_id + " order_id " + order_id + "quantity " + quantity);
         ordersItemsService.addProductToOrder(order_id, prod_id, quantity);
         return "redirect:/updateOrder/" + order_id;
     }
+
     @GetMapping("{prod_id}/removeProductOrder/{order_id}")
-    public String removeProductOrder(@PathVariable int order_id,@PathVariable int prod_id){
-        logger.info("Remove product "+prod_id+" from order "+order_id);
-        OrderItems by2Id = ordersItemsService.findOrderItemsBy2Id(order_id, prod_id);
-        ordersItemsService.removeOrederItems(by2Id);
+    public String removeProductOrder(@PathVariable int order_id, @PathVariable int prod_id) {
+        logger.info("Remove product " + prod_id + " from order " + order_id);
+        ordersItemsService.removeOrderItems(order_id, prod_id);
+        return "redirect:/updateOrder/" + order_id;
+    }
+
+    @GetMapping("{prod_id}/quantityProductOrder/{order_id}")
+    public String quantityProductOrder(@PathVariable int order_id, @PathVariable int prod_id,
+                                       @RequestParam(value = "quantity") int quantity) {
+        logger.info("Update quantity of products in the order " + prod_id + " from order " + order_id);
+        ordersItemsService.updateQuantity(order_id, prod_id, quantity);
         return "redirect:/updateOrder/" + order_id;
     }
 

@@ -1,7 +1,6 @@
 package com.hybrisAcademy.ciklum.service;
 
 import com.hybrisAcademy.ciklum.model.OrderItems;
-import com.hybrisAcademy.ciklum.model.OrderItemsId;
 import com.hybrisAcademy.ciklum.model.Orders;
 import com.hybrisAcademy.ciklum.model.Products;
 import com.hybrisAcademy.ciklum.model.responses.ProductsByOrderResponse;
@@ -42,5 +41,22 @@ public class ServiceRealDatabaseTest {
         System.out.println(by2Id2);
     }
 
+    @Test
+    void deleteOrderItemYest(){
+        Orders orders = ordersService.readById(1);
+        Products byId = productsService.getById(4);
+
+        ordersItemsService.removeOrderItems(1,4);
+
+    }
+
+    @Test
+    void orderItemsUpdateQuantity(){
+        OrderItems by2Id = ordersItemsService.findOrderItemsBy2Id(1, 4);
+        System.out.println(by2Id);
+
+        OrderItems orderItems = ordersItemsService.updateQuantity(1, 4, 10000);
+        System.out.println(orderItems);
+    }
 
 }

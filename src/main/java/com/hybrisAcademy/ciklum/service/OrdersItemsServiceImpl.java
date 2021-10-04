@@ -2,9 +2,12 @@ package com.hybrisAcademy.ciklum.service;
 
 import com.hybrisAcademy.ciklum.model.OrderItems;
 import com.hybrisAcademy.ciklum.model.OrderItemsId;
+import com.hybrisAcademy.ciklum.model.Orders;
+import com.hybrisAcademy.ciklum.model.Products;
 import com.hybrisAcademy.ciklum.repository.OrdersItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrdersItemsServiceImpl implements OrdersItemsService{
@@ -38,9 +41,17 @@ public class OrdersItemsServiceImpl implements OrdersItemsService{
                 return orderItems;
     }
 
+@Transactional
     @Override
-    public void removeOrederItems(OrderItems orderItem) {
-        ordersItemsRepository.deleteByOrdersItems(orderItem.getOrders().getId(), orderItem.getProducts().getId());
+    public void removeOrderItems(int orderId, int productId) {
+        ordersItemsRepository.deleteByOrdersItems(orderId, productId);
+            }
+
+    @Override
+    public OrderItems updateQuantity(int orderId, int productId, int quantity) {
+        OrderItems by2Id = findOrderItemsBy2Id(orderId, productId);
+        by2Id.setQuantity(quantity);
+        return ordersItemsRepository.saveAndFlush(by2Id);
     }
 
 

@@ -13,11 +13,11 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 public class OrderItems {
-@EmbeddedId
+    @EmbeddedId
     OrderItemsId orderItemsKey;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @MapsId("ordersId")
-    @JoinColumn (name = "orders_id")
+    @JoinColumn(name = "orders_id")
     private Orders orders;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @MapsId("productsId")

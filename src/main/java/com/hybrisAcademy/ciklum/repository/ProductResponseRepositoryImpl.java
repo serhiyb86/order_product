@@ -25,7 +25,7 @@ public class ProductResponseRepositoryImpl implements ProductResponseRepository 
             "group by  products_id\n" +
             "ORDER by ordered DESC";
 
-    private static final String QUERY2 ="SELECT orders.id, sum(price) as total, name, quantity, orders.created_at\n" +
+    private static final String QUERY2 = "SELECT orders.id, sum(price) as total, name, quantity, orders.created_at\n" +
             "from products\n" +
             "INNER join order_items on order_items.products_id=products.id\n" +
             "INNER JOIN orders on order_items.orders_id=orders.id\n" +

@@ -7,6 +7,7 @@ import com.hybrisAcademy.ciklum.repository.ProductsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,8 @@ public class ProductsServiceImpl implements ProductsService {
     private static final Logger logger = LoggerFactory.getLogger(ProductsServiceImpl.class);
     @Autowired
     private ProductsRepository productsRepository;
+    @Autowired
+    private OrdersItemsService ordersItemsService;
 
 
     @Override
@@ -38,19 +41,17 @@ public class ProductsServiceImpl implements ProductsService {
 
     @Override
     @Transactional
+    @Modifying
     public void removeById(int id) {
-        Products byId = getById(id);
+        ordersItemsService.removeOrderItemsByProductId(id);
         productsRepository.deleteById(id);
     }
 
     @Override
-    public void removeAll(String password) {
-
-    }
-
-    @Override
-    public List<Products> productsByOrdersId(int id) {
-        return null;
+    @Transactional
+    @Modifying
+    public void removeAllProducts() {
+        productsRepository.deleteAll();
     }
 
     @Override

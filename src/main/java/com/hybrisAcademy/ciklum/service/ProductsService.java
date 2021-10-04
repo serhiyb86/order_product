@@ -8,11 +8,16 @@ import java.util.List;
 
 public interface ProductsService {
     Products create(Products product);
+
     Products getById(int id);
+
     void removeById(int id);
-    void removeAll(String password);
-    List<Products> productsByOrdersId(int id);
+
+    void removeAllProducts();
+
     List<Products> allProducts();
+
     List<ProductsResponse> getOrderedProductsList();
+
     List<ProductsByOrderResponse> getListProductByOrderResponse();
 }

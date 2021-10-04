@@ -1,6 +1,5 @@
 package com.hybrisAcademy.ciklum.model;
 
-import com.hybrisAcademy.ciklum.model.responses.ProductsResponse;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +25,7 @@ public class Products {
     private PrStatus status;
     private LocalDateTime created_at;
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL,
-    fetch = FetchType.EAGER)
+            fetch = FetchType.EAGER)
     private List<OrderItems> orders;
 
     @Override
@@ -37,7 +36,7 @@ public class Products {
                 ", price=" + price +
                 ", status=" + status +
                 ", created_at=" + created_at +
-                ", orders amount=" +" orders.size()" +
+                ", orders amount=" + " orders.size()" +
                 '}';
     }
 }

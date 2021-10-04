@@ -59,32 +59,6 @@ class ProductsServiceImplTest {
 
     }
 
-    @Test
-    void getOrderedProductsList() {
-//        List<ProductsResponse> productsResponses = productsRepository.findAll();
-//        productsResponses.forEach(System.out::println);
-    }
-
-    @Test
-    void removeById() {
-    }
-
-    @Test
-    void removeAll() {
-    }
-
-    @Test
-    void productsByOrdersId() {
-
-
-    }
-
-    @Test
-    void getAll() {
-        productsRepository.findAll().forEach(System.out::println);
-
-
-    }
 
 
 

@@ -1,8 +1,6 @@
 package com.hybrisAcademy.ciklum.service;
 
 import com.hybrisAcademy.ciklum.model.OrderItems;
-import com.hybrisAcademy.ciklum.model.Orders;
-import com.hybrisAcademy.ciklum.model.Products;
 import com.hybrisAcademy.ciklum.model.responses.ProductsByOrderResponse;
 import com.hybrisAcademy.ciklum.model.responses.ProductsResponse;
 import org.junit.jupiter.api.Test;
@@ -34,29 +32,35 @@ public class ServiceRealDatabaseTest {
 
     @Test
     void addProductToOrderTest() {
-        OrderItems by2Id = ordersItemsService.findOrderItemsBy2Id(1, 4);
-        System.out.println(by2Id);
-        ordersItemsService.addProductToOrder(1,4,5);
-        OrderItems by2Id2 = ordersItemsService.findOrderItemsBy2Id(1, 4);
-        System.out.println(by2Id2);
+//        OrderItems by2Id = ordersItemsService.findOrderItemsBy2Id(1, 4);
+//        System.out.println(by2Id);
+//        ordersItemsService.addProductToOrder(1, 4, 5);
+//        OrderItems by2Id2 = ordersItemsService.findOrderItemsBy2Id(1, 4);
+//        System.out.println(by2Id2);
     }
 
     @Test
-    void deleteOrderItemYest(){
-        Orders orders = ordersService.readById(1);
-        Products byId = productsService.getById(4);
-
-        ordersItemsService.removeOrderItems(1,4);
-
+    void deleteOrderItemYest() {
+        ordersItemsService.removeOrderItems(1, 4);
     }
 
     @Test
-    void orderItemsUpdateQuantity(){
+    void orderItemsUpdateQuantity() {
         OrderItems by2Id = ordersItemsService.findOrderItemsBy2Id(1, 4);
         System.out.println(by2Id);
 
         OrderItems orderItems = ordersItemsService.updateQuantity(1, 4, 10000);
         System.out.println(orderItems);
+    }
+
+    @Test
+    void deleteProduct() {
+        productsService.removeById(2);
+    }
+
+    @Test
+    void removeAllProducts(){
+        productsService.removeAllProducts();
     }
 
 }

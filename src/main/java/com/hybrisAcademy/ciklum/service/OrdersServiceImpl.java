@@ -1,6 +1,5 @@
 package com.hybrisAcademy.ciklum.service;
 
-import com.hybrisAcademy.ciklum.model.OrderItems;
 import com.hybrisAcademy.ciklum.model.Orders;
 import com.hybrisAcademy.ciklum.repository.OrdersItemsRepository;
 import com.hybrisAcademy.ciklum.repository.OrdersRepository;
@@ -9,11 +8,10 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Random;
 
 @Service
-public class OrdersServiceImpl implements OrdersService{
+public class OrdersServiceImpl implements OrdersService {
     @Autowired
     private OrdersRepository ordersRepository;
     @Autowired
@@ -22,7 +20,7 @@ public class OrdersServiceImpl implements OrdersService{
     @Override
     public Orders readById(int id) {
         return ordersRepository.findById(id).orElseThrow(()
-                ->new EntityNotFoundException("Orders with ID "+id+" didnt find"));
+                -> new EntityNotFoundException("Orders with ID " + id + " didnt find"));
     }
 
 

@@ -4,3 +4,4 @@
 2. Start CiklumApplication from main method
 3. http://localhost:9090/
 4. Database is on the cloud.
+5. Password to delete all products "1234" 

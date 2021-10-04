@@ -1,7 +1,6 @@
 package com.hybrisAcademy.ciklum.controller;
 
 
-import com.hybrisAcademy.ciklum.model.OrderItems;
 import com.hybrisAcademy.ciklum.model.PrStatus;
 import com.hybrisAcademy.ciklum.model.Products;
 import com.hybrisAcademy.ciklum.model.responses.ProductsByOrderResponse;
@@ -21,6 +20,7 @@ import java.util.List;
 @Controller
 public class ProductController {
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+    private static final String PASSWORD = "1234";
 
     private ProductsService productsService;
     @Autowired
@@ -69,7 +69,22 @@ public class ProductController {
     public String removeProduct(@PathVariable int product_id) {
         logger.info("Product delete was called! " + product_id);
         productsService.removeById(product_id);
-        return "redirect:listProducts";
+        return "redirect:/listProducts";
+    }
+
+    @GetMapping("removeAllProducts")
+    public String removeAllProducts(@RequestParam String pass, Model model) {
+        logger.info("Delete all products was called! ");
+        if (!pass.equals(PASSWORD)) {
+            List<Products> products = productsService.allProducts();
+            model.addAttribute("list", products);
+            model.addAttribute("pass", "The password is not matched!");
+            logger.info("The password is not matched!");
+            return "products-list";
+        }
+        productsService.removeAllProducts();
+        logger.info("All products removed!");
+        return "redirect:/listProducts";
     }
 
     @GetMapping("{prod_id}/addProductOrder/{order_id}")

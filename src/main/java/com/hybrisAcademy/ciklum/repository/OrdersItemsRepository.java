@@ -18,4 +18,9 @@ public interface OrdersItemsRepository extends JpaRepository<OrderItems, Integer
     @Transactional
     @Modifying
     void deleteByOrdersItems(int ordersId, int productsId);
+
+    @Query(value = "DELETE FROM `order_items` WHERE products_id=?1", nativeQuery = true)
+    @Transactional
+    @Modifying
+    void deleteByProductId(int productsId);
 }

@@ -9,12 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import java.time.LocalDateTime;
-import java.util.Random;
 
 @Controller
 public class OrdersController {
@@ -25,29 +20,25 @@ public class OrdersController {
     private ProductsService productsService;
 
     @GetMapping("newOrder")
-    public String create(Model model){
+    public String create(Model model) {
         logger.info("Create order page was called! ");
         Orders order = ordersService.createOrder();
         model.addAttribute("order", order);
         model.addAttribute("created", "Your order was created!");
         model.addAttribute("products", productsService.allProducts());
-        logger.info("New order -> "+order);
+        logger.info("New order -> " + order);
         return "addProducts-toOrder";
     }
 
     @GetMapping("updateOrder/{order_id}")
-    public String update(@PathVariable("order_id")int id, Model model){
+    public String update(@PathVariable("order_id") int id, Model model) {
         logger.info("Update order page was called! ");
-       Orders order = ordersService.readById(id);
+        Orders order = ordersService.readById(id);
         model.addAttribute("order", order);
         model.addAttribute("created", "Update your order!");
         model.addAttribute("products", productsService.allProducts());
-        logger.info("New order -> "+order);
+        logger.info("New order -> " + order);
         return "addProducts-toOrder";
     }
 
-    @GetMapping("ordersList")
-    public String ordersList(){
-        return "orders-list";
-    }
 }

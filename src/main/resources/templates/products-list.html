@@ -9,7 +9,16 @@
 <h2>Products List</h2>
 <a href="listOderedProducts">List products with total ordered quantity.</a>
 <br>
+<span style="color: blue" >In case you deleted the product you also delete this product from the order. </span>
 <br>
+<span style="color: crimson">All products and related orders will be removed!</span>
+<form th:action="@{/removeAllProducts}" method="get">
+    <label for="pass" >Enter password to delete all products: </label>
+    <input type="text" name="pass" id="pass">
+    <input type="submit" value="Delete">
+</form>
+<span style="color: crimson" th:text="${pass}"/>
+
 <br>
 <table class="table">
     <tr>
@@ -29,7 +38,7 @@
             <a th:href="@{editProduct/${prod.id}|}">Edit (Not done)</a>
         </td>
         <td>
-            <a th:href="@{|/removeProduct/${prod.id}|}">Remove (Not done)</a>
+            <a th:href="@{|/removeProduct/${prod.id}|}">Remove</a>
         </td>
     </tr>
 
